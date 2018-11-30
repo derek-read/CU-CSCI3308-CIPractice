@@ -1,6 +1,7 @@
-# Andy Sayler
+# Derek Read
+# Lab 12
 # CI Practice
-# Summer 2014
+# Fall 2018
 
 CC = gcc
 CFLAGS = -c -g -Wall -Wextra
@@ -21,6 +22,10 @@ geometry_test.o: geometry_test.c geometry.h
 
 geometry.o: geometry.c geometry.h
 	$(CC) $(CFLAGS) $< -o $@
+
+.PHONY : test 
+test: geometry_test
+	./geometry_test
 
 dep:
 	sudo apt-get install check
