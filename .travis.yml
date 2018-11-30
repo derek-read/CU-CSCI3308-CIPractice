@@ -1,3 +1,3 @@
 install: - pip install -r requirements/test.txt
-language: c
+language: C
 script: make && make test
