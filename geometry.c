@@ -1,8 +1,8 @@
 /*
  * geometry.c
- * Andy Sayler
+ * Derek Read
  * CSCI 3308
- * Summer 2014
+ * Fall 2018
  *
  * This file contains a simple geomtery functions.
  *
@@ -48,6 +48,15 @@ bool coord_2d_eq(const coord_2d_t* a, const coord_2d_t* b){
 
 }
 
+bool coord_2d_double_eq(double a, double b){
+    if(a == b){
+        return true;
+    }else{
+        return false;
+    }
+}
+
+
 void coord_2d_midpoint(coord_2d_t* mid, const coord_2d_t* a, const coord_2d_t* b){
 
     /* Input Checks */
@@ -68,4 +77,28 @@ void coord_2d_midpoint(coord_2d_t* mid, const coord_2d_t* a, const coord_2d_t* b
     mid->x = ((a->x + b->x) / 2.0 );
     mid->y = ((a->y + b->y) / 2.0 );
 
+}
+
+double coord_2d_area_triangle(const coord_2d_t* a, const coord_2d_t* b, const coord_2d_t* c){
+    if(!a){
+        DEBUG(__FILE__, __LINE__, __func__, "'a' must not be NULL");
+        return NAN;
+    }
+    if(!b){
+        DEBUG(__FILE__, __LINE__, __func__, "'b' must not be NULL");
+        return NAN;
+    }
+    if(!c){
+        DEBUG(__FILE__, __LINE__, __func__, "'c' must not be NULL");
+        return NAN;
+    }
+
+    double x1 = (a->x * (b->y - c->y));
+    double x2 = x1 + (b->x * (c->y - a->y));
+    double x3 = x2 + (c->x * (a->y - b->y));
+    double area = (x3/2);
+    if(area < 0){
+        area = area*-1;
+    }
+    return area;
 }
