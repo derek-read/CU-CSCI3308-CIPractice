@@ -1,5 +1,5 @@
 os: linux
-script: make && make test
+script:
 sudo: required
 install:
 language: c
